@@ -1,0 +1,55 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    position: relative;
+    background-color: #eee;
+    padding: 5px;
+    width: 40%;
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+.search-input{
+    width: 100%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;    
+    box-sizing: border-box;
+}
+.list-sugession {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 0;
+    margin-top: 2px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: white;
+}
+.list-sugession li{
+    padding: 5px 0px;
+}
+.list-history li {
+    margin: 0px 15px;
+    border-bottom: solid 1px #ddd;
+    padding: 10px 0px;
+}
+.list-history li span{
+    float: right;
+    color: #aaa;
+}
+.list-history li:first-child{
+    font-weight: bold;
+    color: black ;
+}
+.list-history li:first-child span{
+    font-weight: normal;    
+    text-decoration: underline;
+    color: inherit;
+    cursor: pointer;
+}

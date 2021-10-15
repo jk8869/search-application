@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Search App</title>
+</head>
+<body>
+    <div class="container">
+        <input name="input" class="search-input"/>
+        <ul class="list-sugession">
+            <li>dogs</li>
+            <li>donky</li>
+            <li>doodles</li>
+            <li>doors</li>
+            <li>domless</li>
+            <li>doukour</li>
+        </ul>        
+        <ul class="list-history">
+            <li>Search history<span>Clear search history</span></li>
+            <li>dogs<span>X</span><span>2021-12-01, 2:23 PM</span></li>
+            <li>donky<span>X</span><span>2021-12-01, 2:23 PM</span></li>
+            <li>doodles<span>X</span><span>2021-12-01, 2:23 PM</span></li>
+            <li>doors<span>X</span><span>2021-12-01, 2:23 PM</span></li>
+            <li>domless<span>X</span><span>2021-12-01, 2:23 PM</span></li>
+            <li>doukour<span>X</span><span>2021-12-01, 2:23 PM</span></li>
+        </ul>
+    </div>    
+
+    <script>
+        const input = document.querySelector('input');
+        input.addEventListener('input', fetchData);
+        const listElement = document.getElementById("list-sugession");
+
+        function boldString(str, substr) {
+            let strRegExp = new RegExp(substr, 'g');
+            return str.replace(strRegExp, '<b>'+substr+'</b>');
+        }
+
+        function fetchData(e) {
+            let xhr = new XMLHttpRequest();  
+            let userInput = e.target.value;          
+            xhr.open("GET", `https://gorest.co.in/public/v1/users?name=${e.target.value}`, true);
+            xhr.onload = function(){                
+                let data = JSON.parse(xhr.responseText).data;                
+                let listItem = "";
+                data.map((item, index) => listItem += `<li>${boldString(item.name, userInput)}</li>`);
+                listElement.innerHTML = listItem;
+            };
+            xhr.send();
+        }
+        
+    </script>
+</body>
+</html>
