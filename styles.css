@@ -2,7 +2,7 @@ body{
     margin: 0;
     padding: 0;
 }
-.container{
+#container{
     position: relative;
     background-color: #eee;
     padding: 5px;
@@ -14,42 +14,63 @@ ul {
     list-style: none;
     padding: 0;
 }
-.search-input{
+#search-input{
     width: 100%;
     padding: 12px 20px;
     display: inline-block;
     border: 1px solid #ccc;    
     box-sizing: border-box;
 }
-.list-sugession {
+#search-input:focus{
+    outline: 0;
+}
+#list-sugession {
     width: 100%;
-    padding: 12px 15px;
     margin: 0;
     margin-top: 2px;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
     background-color: white;
+    max-height: 150px;
+    overflow-y: scroll;
+    display: none;
 }
-.list-sugession li{
-    padding: 5px 0px;
+#list-sugession li{
+    padding: 5px 15px;
+    cursor: pointer;
 }
-.list-history li {
+#list-sugession li:hover{
+    background-color: #eee;
+}
+#list-history{
+    display: none;
+}
+#list-history li {
     margin: 0px 15px;
     border-bottom: solid 1px #ddd;
     padding: 10px 0px;
 }
-.list-history li span{
+#list-history li span{
     float: right;
     color: #aaa;
 }
-.list-history li:first-child{
+#list-history li:first-child{
     font-weight: bold;
     color: black ;
 }
-.list-history li:first-child span{
+#list-history li:first-child span{
     font-weight: normal;    
     text-decoration: underline;
     color: inherit;
     cursor: pointer;
+}
+.clear-history-item{
+    margin-left: 15px;    
+    font-size: 28px;
+    line-height: 20px;
+    cursor: pointer;
+}
+.clear-history-item::after{
+    content: "\00d7";   
 }
