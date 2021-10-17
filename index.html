@@ -4,105 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/app.css">
     <title>Search App</title>
 </head>
 <body>
-    <div id="container">
+    <header>
+        <!-- header content in here for semantic purpose -->
+    </header>
+    <main id="container">
         <form>
+            <!-- we use input inside form for semantic purpose -->
             <input name="input" id="search-input" type="search"/>
-        </form>        
-        <ul id="list-sugession">
-            <!-- <li>dogs</li>
-            <li>donky</li>
-            <li>doodles</li>
-            <li>doors</li>
-            <li>domless</li>
-            <li>doukour</li> -->
+        </form> 
+        <!-- we use ul tag instead of ol because our list is not ordered for semantic purpose -->       
+        <ul id="list-sugession">            
         </ul>        
-        <ul id="list-history">
-            <!--<li>Search history<span id="clear-history" onclick="clearHistory">Clear search history</span></li>
-            <li>dogs<span class="clear-history"></span><span>2021-12-01, 2:23 PM</span></li>
-            <li>donky<span class="clear-history"></span><span>2021-12-01, 2:23 PM</span></li>
-            <li>doodles<span class="clear-history"></span><span>2021-12-01, 2:23 PM</span></li>
-            <li>doors<span class="clear-history"></span><span>2021-12-01, 2:23 PM</span></li>
-            <li>domless<span class="clear-history"></span><span>2021-12-01, 2:23 PM</span></li>
-            <li>doukour<span class="clear-history"></span><span>2021-12-01, 2:23 PM</span></li> -->
+        <ul id="list-history">            
         </ul>
-    </div>    
+    </main>    
 
-    <script>    
-        var searchHistoryElement = document.getElementById("list-history");  
-        var searchHistoryItems = localStorage.getItem('searchHistory') ?? [];  
-        const input = document.querySelector('input');
-        const suggesstionList = document.getElementById("list-sugession");
-        
-        input.addEventListener('input', fetchData);
-        input.addEventListener('focusin', loadSearchHistory);
-        // document.getElementById("container").addEventListener('focusout', () => {
-        //     document.getElementById("list-history").style.display = "none";
-        //     document.getElementById("list-sugession").style.display = "none";
-        // });
-        function clearHistory() {
-            alert('hi');
-            localStorage.clear();
-            searchHistoryElement.innerHTML = "";
-            searchHistoryElement.style.display = "none";
+    <footer>
+        <!-- footer content in here for semantic purpose -->
+    </footer>
 
-        }  
-        
-        function loadSearchHistory(){     
-            searchHistoryItems = localStorage.getItem('searchHistory') ?? [];                  
-            if(searchHistoryItems.length > 0){                
-                searchHistoryItems = JSON.parse(searchHistoryItems);
-                console.log('log', searchHistoryItems);
-                let listItem = `<li>Search history<span id="clear-history" onclick="clearHistory()">Clear search history</span></li>`;
-                searchHistoryItems.map((item, index) => {
-                    listItem += `<li>${item.value}<span class="clear-history-item"></span><span>${item.date}</span></li>`;
-                });
-                searchHistoryElement.innerHTML = listItem;
-                searchHistoryElement.style.display = "block";
-            }            
-        }
-
-        function boldString(str, substr) {
-            let strRegExp = new RegExp(substr, 'g');
-            return str.replace(strRegExp, '<b>'+substr+'</b>');
-        }
-
-        function onSelectListItem(value){
-            let m = new Date();
-            let dateString = m.getUTCFullYear() +"-"+ (m.getUTCMonth()+1) +"-"+ m.getUTCDate() + " " + m.getUTCHours() + ":" + m.getUTCMinutes();
-
-            let historyObject = {
-                value: value,
-                date: dateString
-            }            
-            searchHistoryItems.push(historyObject);
-            localStorage.setItem('searchHistory', JSON.stringify(searchHistoryItems));
-        }
-
-        function fetchData(e) {
-            let xhr = new XMLHttpRequest();  
-            let userInput = e.target.value;          
-            xhr.open("GET", `https://gorest.co.in/public/v1/users?name=${e.target.value}`, true);
-            xhr.onload = function(){                
-                let data = JSON.parse(xhr.responseText).data; 
-                console.log(data);                              
-                let listItem = "";
-                data.map((item, index) => 
-                    listItem += `<li onclick="onSelectListItem('${item.name}')">${boldString(item.name, userInput)}</li>`);
-                suggesstionList.innerHTML = listItem;
-
-                if(data == null || data.length == 0){
-                    suggesstionList.style.display = "none";
-                }else{
-                    suggesstionList.style.display = "block";
-                }
-            };
-            xhr.send();
-        }
-        
-    </script>
+    <script src="js/app.js"></script>
 </body>
 </html>
