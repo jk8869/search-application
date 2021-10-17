@@ -56,7 +56,7 @@ ul {
     border-bottom: solid 1px #ddd;
     padding: 10px 0px;
 }
-#list-history li span{
+.history-date, .clear-history-item{
     float: right;
     color: #aaa;
 }
@@ -64,17 +64,20 @@ ul {
     font-weight: bold;
     color: black ;
 }
-#list-history li:first-child span{
+#clear-history{
     font-weight: normal;    
     text-decoration: underline;
     color: inherit;
     cursor: pointer;
+    float: right;
+    border: none;
 }
 .clear-history-item{
     margin-left: 15px;    
     font-size: 28px;
     line-height: 20px;
     cursor: pointer;
+    border: none;
 }
 .clear-history-item::after{
     content: "\00d7";   

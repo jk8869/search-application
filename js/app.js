@@ -30,9 +30,9 @@ var timerId;
             if(searchHistoryList.length > 0){
                 searchHistoryList = JSON.parse(searchHistoryList);
                 sortSearchHistoryList();
-                let listItem = `<li>Search history<span id="clear-history" onclick="clearHistory()">Clear search history</span></li>`;
+                let listItem = `<li>Search history<button id="clear-history" onclick="clearHistory()">Clear search history</button></li>`;
                 searchHistoryList.map((item, index) => {
-                    listItem += `<li>${item.value}<span class="clear-history-item" onclick="clearHistoryItem(${item.id}, this)"></span><span>${item.date.slice(0, -3)}</span></li>`;
+                    listItem += `<li>${item.value}<button class="clear-history-item" onclick="clearHistoryItem(${item.id}, this)"></button><time class="history-date">${item.date.slice(0, -3)}</time></li>`;
                 });
                 searchHistoryElement.innerHTML = listItem;
                 searchHistoryElement.style.display = "block";
