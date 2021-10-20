@@ -8,7 +8,7 @@ const clearHistory = () => {
     localStorage.clear();
     searchHistoryElement.innerHTML = "";
     searchHistoryElement.style.display = "none";
-    loadSearchHistory();
+    loadSearchHistory()
 }
 
 const clearHistoryItem = (id, el) => {            
